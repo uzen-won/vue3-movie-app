@@ -1,15 +1,17 @@
 import axios from "axios";
 import _uniqBy from "lodash/uniqBy";
 
+const _defaultMessage = "Search fot the movie title!"
+
 export default {
   // module!
   namespaced: true,
   // data!
   state: () => ({
     movies: [],
-    message: "Search fot the movie title!",
+    message: _defaultMessage,
     loading: false,
-    theMovie: {}
+    theMovie: {},
   }),
   // computed!
   getters: {},
@@ -23,6 +25,8 @@ export default {
     },
     resetMovies(state) {
       state.movies = [];
+      state.message = _defaultMessage;
+      state.loading = false
     },
   },
   // 비동기
@@ -74,28 +78,28 @@ export default {
         });
       }
     },
-    async searchMovieWithId({ state , commit }, payload) {
-      if (state.loading) return
-      
-      commit('updateState', {
+    async searchMovieWithId({ state, commit }, payload) {
+      if (state.loading) return;
+
+      commit("updateState", {
         theMovie: {},
-        loading: true
-      })
+        loading: true,
+      });
 
       try {
         const res = await _fetchMovie(payload);
-        console.log(res.data)
-        commit('updateState', {
-          theMovie: res.data
-        })
+        console.log(res.data);
+        commit("updateState", {
+          theMovie: res.data,
+        });
       } catch (error) {
-        commit('updateState', {
-          theMovie: {}
-        })
-      } finally { 
-        commit('updateState', {
-          loading: false
-        })
+        commit("updateState", {
+          theMovie: {},
+        });
+      } finally {
+        commit("updateState", {
+          loading: false,
+        });
       }
     },
   },

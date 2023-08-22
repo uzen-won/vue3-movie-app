@@ -22,7 +22,6 @@ export default{
 </script>
 
 <style lang="scss" scoped>
-@import '~/scss/main.scss';
 .not-found {
   line-height: 1.2;
   text-align: center;

@@ -1,29 +1,29 @@
 <template>
- <div class="about">
-  <div class="photo">
-    <Loader v-if="imageLoading" absolute />
-    <img :src="image" :alt="name">
+  <div class="about">
+    <div class="photo">
+      <Loader v-if="imageLoading" absolute />
+      <img :src="image" :alt="name">
+    </div>
+    <div class="name">
+      {{ name }}
+    </div>
+    <div>
+      {{ email }}
+    </div>
+    <div>
+      {{ blog }}
+    </div>
+    <div>
+      {{ phone }}
+    </div>
   </div>
-  <div class="name">
-    {{ name }}
-  </div>
-  <div>
-    {{ email }}
-  </div>
-  <div>
-    {{ blog }}
-  </div>
-  <div>
-    {{ phone }}
-  </div>
- </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import Loader from '~/components/Loader'
 export default {
-  data() { 
+  data() {
     return {
       imageLoading: true
     }
@@ -32,19 +32,35 @@ export default {
     Loader
   },
   computed: {
-    ...mapState('about', [
-      'image',
-      'name',
-      'email',
-      'blog',
-      'phone'
-    ])
+    image() { 
+      return this.$store.state.about.image
+    },
+    name() {
+      return this.$store.state.about.name
+    },
+    email() {
+      return this.$store.state.about.email
+    },
+    blog() {
+      return this.$store.state.about.blog
+    },
+    phone() {
+      return this.$store.state.about.phone
+    },
+
+    // ...mapState('about', [
+    //   'image',
+    //   'name',
+    //   'email',
+    //   'blog',
+    //   'phone'
+    // ])
   },
   mounted() {
     this.init()
   },
   methods: {
-    async init() { 
+    async init() {
       await this.$loadImage(this.image)
       this.imageLoading = false
     }
@@ -53,10 +69,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/scss/main";
 
 .about {
   text-align: center;
+
   .photo {
     width: 250px;
     height: 250px;
@@ -66,17 +82,21 @@ export default {
     border-radius: 50%;
     box-sizing: border-box;
     background-color: $gray-200;
-    position:relative;
+    position: relative;
+
     img {
       width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      -o-object-fit: contain;
+      object-fit: cover;
     }
   }
+
   .name {
     font-size: 40px;
     font-family: 'Oswald', sans-serif;
     margin-bottom: 20px;
   }
 }
-
-
 </style>

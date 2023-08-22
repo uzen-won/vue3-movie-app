@@ -17,7 +17,6 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '~/scss/main.scss';
   body {
     padding-bottom: 100px;
     font-weight: 500;
