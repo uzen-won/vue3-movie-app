@@ -1,25 +1,39 @@
 <template>
   <div class="container">
-    <input type="text" class="form-control" v-model="title" placeholder="Search for Movies, Series & more"
-      @keyup.enter="apply()" /> <!-- keyup -> 키를 눌렀다가 뗐을때 -->
+    <input
+      v-model="title"
+      class="form-control"
+      type="text"
+      placeholder="Search for Movies, Series & more"
+      @keyup.enter="apply" />
     <div class="selects">
-      <!-- 
-        $data는 script에 있는 데이터와 동일하다
-        data(){}안에 들어있는 데이터에 접근가능
-       -->
-      <select v-for="fil in filters" v-model="$data[fil.name]" :key="fil.name" class="form-select">
-        <option value="" v-if="fil.name === 'year'">All Years</option>
-        <option v-for="item in fil.items" :key="item">
+      <select
+        v-for="filter in filters"
+        v-model="$data[filter.name]"
+        :key="filter.name"
+        class="form-select">
+        <option
+          v-if="filter.name === 'year'"
+          value="">
+          All Years
+        </option>
+        <option
+          v-for="item in filter.items"
+          :key="item">
           {{ item }}
         </option>
       </select>
     </div>
-    <button type="button" class="btn btn-primary" @click="apply()">Apply</button>
+    <button
+      class="btn btn-primary"
+      @click="apply">
+      Apply
+    </button>
   </div>
 </template>
+
 <script>
 export default {
-  components: {},
   data() {
     return {
       title: '',
@@ -40,65 +54,56 @@ export default {
           items: (() => {
             const years = []
             const thisYear = new Date().getFullYear()
-            for (let i = thisYear; i >= 1985; i--) {
+            for (let i = thisYear; i >= 1985; i -= 1) {
               years.push(i)
             }
             return years
           })()
-        },
+        }
       ]
-    };
+    }
   },
   methods: {
-    async apply() {
-      //actions를 동작 시킨다
+    apply() {
       this.$store.dispatch('movie/searchMovies', {
-        // movie.js payload로 전달
-        title: this.title,   
+        title: this.title,
         type: this.type,
         number: this.number,
-        year: this.year,
+        year: this.year
       })
-      //Search Movies
-      // const resPoster = res.data.Search[0].Poster
-      // console.log(resPoster)
     }
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .container {
   display: flex;
-
-  >* {
+  > * {
     margin-right: 10px;
     font-size: 15px;
-
     &:last-child {
-      margin-right: 0px;
+      margin-right: 0;
     }
   }
-
   .selects {
     display: flex;
-
     select {
       width: 120px;
-
-      &:not(:last-child) {
-        margin-right: 10px;
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
       }
     }
   }
-
   .btn {
     width: 120px;
     height: 50px;
-    font-weight: 700;
     flex-shrink: 0;
+    font-weight: 700;
   }
 
-  @include media-breakpoint-down(lg){
+  @include media-breakpoint-down(lg) {
     display: block;
     input {
       margin-right: 0;

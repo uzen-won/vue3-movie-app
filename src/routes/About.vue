@@ -1,60 +1,43 @@
 <template>
   <div class="about">
     <div class="photo">
-      <Loader v-if="imageLoading" absolute />
-      <img :src="image" :alt="name">
+      <Loader
+        v-if="imageLoading"
+        absolute />
+      <img
+        :src="image"
+        :alt="name" />
     </div>
     <div class="name">
       {{ name }}
     </div>
-    <div>
-      {{ email }}
-    </div>
-    <div>
-      {{ blog }}
-    </div>
-    <div>
-      {{ phone }}
-    </div>
+    <div>{{ email }}</div>
+    <div>{{ blog }}</div>
+    <div>{{ phone }}</div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import Loader from '~/components/Loader'
+
 export default {
+  components: {
+    Loader
+  },
   data() {
     return {
       imageLoading: true
     }
   },
-  components: {
-    Loader
-  },
   computed: {
-    image() { 
-      return this.$store.state.about.image
-    },
-    name() {
-      return this.$store.state.about.name
-    },
-    email() {
-      return this.$store.state.about.email
-    },
-    blog() {
-      return this.$store.state.about.blog
-    },
-    phone() {
-      return this.$store.state.about.phone
-    },
-
-    // ...mapState('about', [
-    //   'image',
-    //   'name',
-    //   'email',
-    //   'blog',
-    //   'phone'
-    // ])
+    ...mapState('about', [
+      'name',
+      'email',
+      'blog',
+      'phone',
+      'image'
+    ])
   },
   mounted() {
     this.init()
@@ -69,10 +52,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .about {
   text-align: center;
-
   .photo {
     width: 250px;
     height: 250px;
@@ -83,7 +64,6 @@ export default {
     box-sizing: border-box;
     background-color: $gray-200;
     position: relative;
-
     img {
       width: 100%;
       height: 100%;
@@ -92,10 +72,9 @@ export default {
       object-fit: cover;
     }
   }
-
   .name {
     font-size: 40px;
-    font-family: 'Oswald', sans-serif;
+    font-family: "Oswald", sans-serif;
     margin-bottom: 20px;
   }
 }

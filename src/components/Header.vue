@@ -2,14 +2,25 @@
   <header>
     <Logo />
     <div class="nav nav-pills">
-      <div v-for="nav in navigations" :key="nav.name" class="nav-item">
-        <RouterLink :to="nav.href" active-class="active" :class="{ active: isMatch(nav.path) }" class="nav-link">
+      <div
+        v-for="nav in navigations"
+        :key="nav.name"
+        class="nav-item">
+        <RouterLink
+          :to="nav.href"
+          active-class="active"
+          :class="{ active: isMatch(nav.path) }"
+          class="nav-link">
           {{ nav.name }}
         </RouterLink>
       </div>
     </div>
-    <div class="user" @click="toAbout">
-      <img :src="image" :alt="name" />
+    <div
+      class="user"
+      @click="toAbout">
+      <img
+        :src="image"
+        :alt="name" />
     </div>
   </header>
 </template>
@@ -17,7 +28,11 @@
 <script>
 import { mapState } from 'vuex'
 import Logo from '~/components/Logo'
+
 export default {
+  components: {
+    Logo
+  },
   data() {
     return {
       navigations: [
@@ -34,7 +49,6 @@ export default {
           name: 'About',
           href: '/about'
         }
-
       ]
     }
   },
@@ -44,34 +58,28 @@ export default {
       'name'
     ])
   },
-  components: {
-    Logo
-  },
   methods: {
     isMatch(path) {
       if (!path) return false
-      console.log(this.$route)
       return path.test(this.$route.fullPath)
     },
     toAbout() {
-      console.log('!!!')
       this.$router.push('/about')
     }
   }
 }
 </script>
+
 <style lang="scss" scoped>
 header {
   height: 70px;
-  padding: 0 40px;
   display: flex;
   align-items: center;
+  padding: 0 40px;
   position: relative;
-
   .logo {
     margin-right: 40px;
   }
-
   .user {
     width: 40px;
     height: 40px;
@@ -81,17 +89,15 @@ header {
     background-color: $gray-200;
     cursor: pointer;
     position: absolute;
-    transition: .4s;
     top: 0;
     bottom: 0;
     right: 40px;
     margin: auto;
-
+    transition: .4s;
     &:hover {
-      background-color: darken($gray-100, 10%);
+      background-color: darken($gray-200, 10%);
     }
-
-    img {
+     img {
       width: 100%;
       height: 100%;
       border-radius: 100%;
@@ -99,12 +105,10 @@ header {
       object-fit: cover;
     }
   }
-
-  @include media-breakpoint-down (sm) {
+  @include media-breakpoint-down(sm) {
     .nav {
       display: none;
     }
   }
-
 }
 </style>

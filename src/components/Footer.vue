@@ -1,23 +1,29 @@
 <template>
   <footer>
     <Logo />
-    <a href="https://github.com/uzen-won/vue3-Study" target="_blank">copyright(c){{ new Date().getFullYear() }}All rights reserved</a>
+    <a
+      href="https://github.com/ParkYoungWoong"
+      target="_blank">
+      (c){{ new Date().getFullYear() }} {{ name }}
+    </a>
   </footer>
 </template>
+
 <script>
-import Logo from "~/components/Logo"
-export default{ 
+import Logo from '~/components/Logo'
+
+export default {
   components: {
     Logo
   },
-  data(){
-    return{
-
-    };
-  },
-  methods:{}
+  computed: {
+    name() {
+      return this.$store.state.about.name
+    }
+  }
 }
 </script>
+
 <style lang="scss" scoped>
 footer {
   padding: 70px 0;
@@ -28,5 +34,4 @@ footer {
     margin-bottom: 4px;
   }
 }
-
 </style>

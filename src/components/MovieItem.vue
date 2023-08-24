@@ -1,6 +1,12 @@
 <template>
-  <RouterLink class="movie" :to="`/movie/${movie.imdbID}`" :style="{ backgroundImage: `url(${movie.Poster})` }">
-    <Loader v-if="imageLoading" :size="1.5" absolute />
+  <RouterLink
+    :to="`/movie/${movie.imdbID}`"
+    :style="{ backgroundImage: `url(${movie.Poster})` }"
+    class="movie">
+    <Loader
+      v-if="imageLoading"
+      :size="1.5"
+      absolute />
     <div class="info">
       <div class="year">
         {{ movie.Year }}
@@ -11,8 +17,10 @@
     </div>
   </RouterLink>
 </template>
+
 <script>
 import Loader from '~/components/Loader'
+
 export default {
   components: {
     Loader
@@ -33,18 +41,23 @@ export default {
   },
   methods: {
     async init() {
-      await this.$loadImage(this.movie.Poster)
-      this.imageLoading = false
+      const poster = this.movie.Poster
+      if (!poster || poster === 'N/A') {
+        this.imageLoading = false
+      } else {
+        await this.$loadImage(poster)
+        this.imageLoading = false
+      }
     }
   }
 }
 </script>
-<style lang="scss" scoped>
 
+<style lang="scss" scoped>
 .movie {
   $width: 200px;
   width: $width;
-  height: $width * (3 / 2);
+  height: $width * 3/2;
   margin: 10px;
   border-radius: 4px;
   background-color: $gray-400;
@@ -60,22 +73,20 @@ export default {
     right: 0;
     border: 6px solid $primary;
   }
-
   .info {
     background-color: rgba($black, .3);
+    backdrop-filter: blur(10px);
     width: 100%;
     padding: 14px;
     font-size: 14px;
     text-align: center;
+    box-sizing: border-box;
     position: absolute;
     left: 0;
     bottom: 0;
-    backdrop-filter: blur(10px);
-
     .year {
       color: $primary;
     }
-
     .title {
       color: $white;
       white-space: nowrap;

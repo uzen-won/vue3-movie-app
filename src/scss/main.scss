@@ -1,7 +1,5 @@
 // Default variable overrides
-//variables 실행 전에 정의해야한다
-$primary : #fdc000;
-
+$primary: #FDC000;
 $container-max-widths: (
   sm: 540px,
   md: 704px,
@@ -13,10 +11,6 @@ $container-max-widths: (
 // Required
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
-@import "../../node_modules/bootstrap/scss/variables-dark";
-@import "../../node_modules/bootstrap/scss/maps";
 @import "../../node_modules/bootstrap/scss/mixins";
-@import "../../node_modules/bootstrap/scss/root";
 
-//
 @import "../../node_modules/bootstrap/scss/bootstrap";

@@ -1,15 +1,13 @@
-import { reject } from "lodash";
-
 export default {
   install(app) {
-    app.config.globalProperties.$loadImage = (src) => {
+    app.config.globalProperties.$loadImage = src => {
       return new Promise(resolve => {
-        const img = document.createElement("img")
+        const img = document.createElement('img')
         img.src = src
-        img.addEventListener("load", () => {
+        img.addEventListener('load', () => {
           resolve()
-        });
-      });
-    };
-  },
-};
+        })
+      })
+    }
+  }
+}

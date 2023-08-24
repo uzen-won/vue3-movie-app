@@ -1,25 +1,13 @@
 <template>
   <div class="not-found">
-      <div class="status">
-        404
-      </div>
-      <div class="message">
-        Page Not Found!
-      </div>
+    <div class="status">
+      404
     </div>
+    <div class="message">
+      Page Not Found!
+    </div>
+  </div>
 </template>
-<script>
-
-export default{ 
-  components:{},
-  data(){
-    return{
-
-    };
-  },
-  methods:{}
-}
-</script>
 
 <style lang="scss" scoped>
 .not-found {
@@ -27,12 +15,10 @@ export default{
   text-align: center;
   font-family: "Oswald", sans-serif;
   padding: 80px 20px;
-
   .status {
     font-size: 160px;
     color: $primary;
   }
-
   .message {
     font-size: 50px;
   }
