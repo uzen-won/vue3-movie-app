@@ -6,7 +6,7 @@
 export default{ 
   data(){
     return{
-      msg : 'test_hello!'
+      msg : 'component msg'
     };
   },
   mounted() {
