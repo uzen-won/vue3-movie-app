@@ -12,10 +12,7 @@ module.exports = {
 
   // // 일치하는 경로에서는 모듈을 가져오지 않습니다.
   // // `<rootDir>` 토큰을 사용해 루트 경로를 참조할 수 있습니다.
-  modulePathIgnorePatterns: [
-    "<rootDir>/node_modules",
-    "<rootDir>/dist"
-  ],
+  modulePathIgnorePatterns: ["<rootDir>/node_modules", "<rootDir>/dist"],
 
   // jsdom 환경에 대한 URL을 설정합니다.
   // https://github.com/facebook/jest/issues/6766
@@ -23,7 +20,7 @@ module.exports = {
 
   // 정규식과 일치하는 파일의 변환 모듈을 지정합니다.
   transform: {
-    "^.+\\.vue$": "vue-jest",
+    ".*\\.(vue)$": "vue-jest",
     "^.+\\.js$": "babel-jest",
   },
 };
