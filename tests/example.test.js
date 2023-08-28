@@ -1,14 +1,8 @@
-import { double } from "./example"
-
-test('첫 테스트', () => { 
-  expect(123).toBe(123)
+import { asyncFn } from './example'
+describe('비동기 테스트', () => { 
+  //test('테스트 이름','콜백함수','테스트시간')
+  test('async/await', async () => { 
+    const res = await asyncFn()
+    expect(res).toBe('Done!')
+  }, 7000)
 })
-
-test('인수가 숫자 데이터입니다', () => { 
-  expect(double(3)).toBe(6)
-  /* expect(double(10)).toBe(20) */
-})
-
-/* test('인수가 없습니다', () => {
-  expect(double()).toBe(123)
-}) */
