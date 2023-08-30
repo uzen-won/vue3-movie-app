@@ -89,7 +89,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('movie', [
+    ...mapState('movie', [ //movie라는 스토어의 모듈에서 loading, theMovie를 가져와서 사용한다
       'loading',
       'theMovie'
     ])

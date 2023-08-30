@@ -10,5 +10,6 @@ test('메시지를 변경합니다.', async ()=> {
     msg : 'hello won!'
   })
   expect(wrapper.vm.msg).toBe("hello won!"); //성공
-  expect(wrapper.find("div").text()).toBe('Hi won?') //실패
+  //expect(wrapper.find("div").text()).toBe('Hi won?') //실패
+  expect(wrapper.find("div").text()).toBe("hello won!"); //실패
 })
