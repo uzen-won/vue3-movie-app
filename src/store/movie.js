@@ -112,10 +112,6 @@ export default {
           loading: false
         })
       }
-    },
-    sampleAction(context, payload) { 
-      const { state, getters, commit, dispatch } = context
-      //
     }
   }
 }
