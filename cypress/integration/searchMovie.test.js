@@ -70,3 +70,4 @@ describe("영화 검색(겨울왕국2)", () => {
       .contains("Frozen II");
   });
 });
+
