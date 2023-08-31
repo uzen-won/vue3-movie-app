@@ -15,7 +15,7 @@
 * get : 요소검색
 * type : 입력하는 값
 * select : 선택
-* should : 
+* should : 일치하는지 확인 (단위테스트 toBe)
 * 
 *
 *
